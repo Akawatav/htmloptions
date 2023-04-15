@@ -96,6 +96,7 @@ $speed : fast,slow,normal,veryfast,varyslow;
     animation-name: rotate-#{$location};
     animation-iteration-count: infinite;
     animation-duration: 2s;
+    display:inline-block;
   }
 }
 @each $speed2 in $speed {
