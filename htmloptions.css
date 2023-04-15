@@ -891,6 +891,7 @@
   animation-name: rotate-x;
   animation-iteration-count: infinite;
   animation-duration: 2s;
+  display: inline-block;
 }
 
 @keyframes rotate-y {
@@ -906,6 +907,7 @@
   animation-name: rotate-y;
   animation-iteration-count: infinite;
   animation-duration: 2s;
+  display: inline-block;
 }
 
 @keyframes rotate-z {
@@ -921,6 +923,7 @@
   animation-name: rotate-z;
   animation-iteration-count: infinite;
   animation-duration: 2s;
+  display: inline-block;
 }
 
 .animation-speed-fast {
