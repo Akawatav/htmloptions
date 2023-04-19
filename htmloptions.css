@@ -996,9 +996,10 @@
 .dropdown-menu {
   background-color: #606060;
   margin: 0;
+  clear: black;
 }
 
-.dropdown-menu:not(.dropdown:hover + .dropdown-menu, .dropdown + .dropdown-menu:hover) {
+.dropdown-menu:not(.dropdown:hover + .dropdown-menu, .dropdown .dropdown-menu:hover) {
   display: none;
 }
 
@@ -1007,6 +1008,8 @@
   background-color: silver;
   margin: 1;
   border: 2px solid black;
+  color: black;
+  font-size: 50%;
 }
 
 /*# sourceMappingURL=file */

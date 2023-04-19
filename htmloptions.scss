@@ -162,7 +162,8 @@ $speed : fast,slow,normal,veryfast,varyslow;
   &-menu {
     background-color: #606060;
     margin: 0;
-    &:not(.dropdown:hover + .dropdown-menu , .dropdown + .dropdown-menu:hover) {
+    clear: black;
+    &:not(.dropdown:hover + .dropdown-menu , .dropdown .dropdown-menu:hover) {
       display: none;
     }
   }
@@ -171,5 +172,7 @@ $speed : fast,slow,normal,veryfast,varyslow;
     background-color: silver;
     margin: 1;
     border: 2px solid black;
+    color: black;
+    font-size: 50%;
   }
 }
