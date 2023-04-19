@@ -9,6 +9,8 @@ h*タグと同じ
 rotateの後の座標を中心に回る
 
 `animation-speed-(fast,slow,varyslow)`クラス
-アニメーション速度を蹴る
+アニメーション速度を変える
+
 `dropdown`クラス
+
 `dropdown`クラスが着いたタグの隣に`dropdown-menu`クラスでドロップダウンを作れます
