@@ -992,6 +992,7 @@
   background-color: grey;
   margin: 0;
   text-decoration: none;
+  color: var(--color, black);
 }
 
 .dropdown-menu {

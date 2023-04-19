@@ -160,6 +160,7 @@ $speed : fast,slow,normal,veryfast,varyslow;
   background-color: grey;
   margin: 0;
   text-decoration: none;
+  color: var(--color,black);
   &-menu {
     background-color: #606060;
     margin: 0;
