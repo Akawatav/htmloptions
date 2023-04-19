@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .width-1 {
   width: 1%;
 }
@@ -874,7 +875,7 @@
   scroll-behavior: smooth;
 }
 
-:root:has(.scroll-auto), :not(:root:has(.scroll-smmooth)) {
+:root:has(.scroll-auto):not(:root:has(.scroll-smmooth)) {
   scroll-behavior: auto;
 }
 
@@ -891,6 +892,7 @@
   animation-name: rotate-x;
   animation-iteration-count: infinite;
   animation-duration: 2s;
+  animation-timing-function: linear;
   display: inline-block;
 }
 
@@ -907,6 +909,7 @@
   animation-name: rotate-y;
   animation-iteration-count: infinite;
   animation-duration: 2s;
+  animation-timing-function: linear;
   display: inline-block;
 }
 
@@ -923,6 +926,7 @@
   animation-name: rotate-z;
   animation-iteration-count: infinite;
   animation-duration: 2s;
+  animation-timing-function: linear;
   display: inline-block;
 }
 
@@ -940,6 +944,69 @@
 
 .animation-speed-varyslow {
   animation-duration: 4s;
+}
+
+.check-success {
+  content: ' ';
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid #25AF01;
+  border-bottom: 2px solid #25AF01;
+  transform: rotate(-45deg);
+}
+
+.check-failure {
+  content: ' ';
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid #ea5550;
+  border-bottom: 2px solid #ea5550;
+  transform: rotate(-45deg);
+}
+
+.btn {
+  background-color: silver;
+  font-size: 20px;
+  font-weight: bold;
+  border-right: 5px solid black;
+  border-bottom: 5px solid black;
+  border-left: 2px solid grey;
+  border-top: 2px solid grey;
+  border-radius: 10px;
+}
+
+.btn:empty {
+  display: none;
+}
+
+.btn:active {
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+.dropdown {
+  background-color: grey;
+  margin: 0;
+}
+
+.dropdown-menu {
+  background-color: #606060;
+  margin: 0;
+}
+
+.dropdown-menu:not(.dropdown:hover + .dropdown-menu, .dropdown-menu:hover + .dropdown-menu) {
+  display: none;
+}
+
+.dropdown:after {
+  content: "▼";
+  background-color: silver;
+  margin: 1;
+  border: 2px solid black;
 }
 
 /*# sourceMappingURL=file */
