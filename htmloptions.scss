@@ -20,7 +20,8 @@ $sp: 480px;
   @return percentage($number0*0.01)
 }
 $List : width,height;
-$xyz : x,y,z;
+$xyz : x,y,z,X,Y,Z;
+$rotate : '','-reverse';
 $speed : fast,slow,normal,veryfast,varyslow;
 @each $haba in $List {
   @for $number from 1 through 100 {
@@ -34,7 +35,7 @@ $speed : fast,slow,normal,veryfast,varyslow;
     }
   }
 }
-@for $number1 from 1 through 6{
+@for $number1 from 1 through 6 {
   .h#{$number1} , h#{$number1} {
     margin-top: 0;
     margin-bottom: .5rem;
@@ -66,38 +67,26 @@ $speed : fast,slow,normal,veryfast,varyslow;
   scroll-behavior: auto;
 }
 @each $location in $xyz {
-  @keyframes rotate-#{$location} {
-    @if $location == x {
+  @each $rotate0 in $rotate {
+    @keyframes rotate-#{$location}#{$rotate0} {
+      $rotated1 : if(to-lower-case($location) == x or to-lower-case($location) == y , to-upper-case($location) ,'') + "(360deg)";
+      $rotated2 : if(to-lower-case($location) == x or to-lower-case($location) == y , to-upper-case($location) ,'') + "(0deg)";
+      $rotated01 : if($rotate0 == '' , unquote(#{$rotated1}) , unquote(#{$rotated2}));
+      $rotated02 : if($rotate0 == '' , unquote(#{$rotated2}) , unquote(#{$rotated1}));
       0% {
-        transform: rotateX(0deg);
+        transform: rotate#{$rotated02};
       }
       100% {
-        transform: rotateX(360deg);
+        transform: rotate#{$rotated01};
       }
     }
-    @else if $location == y {
-      0% {
-        transform: rotateY(0deg);
-      }
-      100% {
-        transform: rotateY(360deg);
-      }
+    .rotate-#{$location}#{$rotate0} {
+      animation-name: rotate-#{$location}#{$rotate0};
+      animation-iteration-count: infinite;
+      animation-duration: 2s;
+      animation-timing-function: linear;
+      display: inline-block;
     }
-    @else {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  }
-  .rotate-#{$location} {
-    animation-name: rotate-#{$location};
-    animation-iteration-count: infinite;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    display:inline-block;
   }
 }
 @each $speed2 in $speed {
@@ -157,24 +146,107 @@ $speed : fast,slow,normal,veryfast,varyslow;
   }
 }
 .dropdown {
-  background-color: grey;
-  margin: 0;
-  text-decoration: none;
-  color: var(--color,black);
+  position: relative;
+  .dropdown-switch {
+    background-color: grey;
+    margin: 0;
+    text-decoration: none;
+    color: var(--color,black);
+  }
   &-menu {
     background-color: #606060;
     margin: 0;
     clear: black;
-    &:not(.dropdown:hover + .dropdown-menu , .dropdown + .dropdown-menu:hover) {
-      display: none;
-    }
+    position: absolute;
+    width: 100%;
   }
-  &:after {
-    content: "▼";
+  &:not(.dropdown:has(.dropdown-switch:hover ~ .dropdown-menu , .dropdown-switch ~ .dropdown-menu:hover)) .dropdown-menu:not(.dropdown-menu:has(.dropdown .dropdown-close:hover)){ 
+    display: none;
+  }
+  &:has(.dropdown-switch:hover ~ .dropdown-menu , .dropdown-switch ~ .dropdown-menu:hover , .dropdown:has(&-close:active)) &-switch:after {
+    content: "▲";
     background-color: silver;
     margin: 1;
-    border: 2px solid black;
     color: black;
     font-size: 50%;
   }
+  &:not(&:has(.dropdown-switch:hover ~ .dropdown-menu , .dropdown-switch ~ .dropdown-menu:hover) , .dropdown:has(&-close:active)) &-switch:after {
+    content: "▼";
+    background-color: silver;
+    margin: 1;
+    color: black;
+    font-size: 50%;
+  }
+}
+ul , ol {
+  &.sterlist {
+    list-style: none;
+    li {
+      &:before {
+        display: inline-block;
+        content: " ";
+        background-color: yellow;
+        height: 10px;
+        width: 10px;
+        clip-path: polygon(50% 5%, 61% 40%, 98% 40%, 68% 62%, 79% 96%, 50% 75%, 21% 96%, 32% 62%, 2% 40%, 39% 40%);
+      }
+    }
+  }
+}
+.on-off {
+  label.on-off-label {
+    input[type="checkbox"].on-off-box {
+      display: none;
+    }
+  }
+  &:not(:has(input[type="checkbox"].on-off-box:checked)){
+    .on-off-menu{
+      display: none;
+    }
+    label.on-off-label {
+      white-space: nowrap;
+      background-color: var(--backcolor,silver);
+      &:after {
+        content: "▼";
+        font-size: 20%;
+      }
+    }
+  }
+  &:has(input[type="checkbox"].on-off-box:checked) {
+    label.on-off-label {
+      white-space: nowrap;
+      background-color: var(--backcolor,silver);
+      &:after {
+        content: "▲";
+        font-size: 20%;
+      }
+    }
+  }
+  &-menu , &-label{
+    margin: 0;
+    white-space: nowrap;
+    background-color: var(--backcolor,silver);
+  }
+}
+@for $number4 from 1 through 10 {
+  .big-#{$number4} {
+    $number5: (1.675 - ($number4 * 0.05)) * 1rem;
+    $number6: (5.1 - (0.6 * $number4)) * 1vw;
+    margin: 0;
+    font-size: calc(#{$number5} + #{$number6});
+    font-weight: 300;
+    line-height: 1.2;
+    @include pc {
+      font-size: (5.5 - ($number4 * 0.5)) * 1rem;
+    }
+  }
+}
+:is(ul,ol).noliststyle {
+  list-style: none;
+}
+.detail {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='64'/%3E%3Ccircle cx='256' cy='448' r='64'/%3E%3Ccircle cx='256' cy='64' r='64'/%3E%3C/svg%3E%0A");
 }
