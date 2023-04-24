@@ -14,4 +14,4 @@ rotateの後の座標を中心に回る
 
 `dropdown`クラス
 
-`dropdown`クラスが着いたタグの隣に`dropdown-menu`クラスでドロップダウンを作れます
+`dropdown`クラスで囲み,`dropdown-switch`クラスでボタンを作成し、`dropdown-menu`でメニューを作れます
